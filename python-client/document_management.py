@@ -377,7 +377,7 @@ def get_sales_order_v2(item_id):
 def run_sample():
 
     load_dotenv()
-    ENDPOINT = os.getenv("COSMOS_ENDPOINT")
+    ENDPOINT = f"https://{os.getenv('COSMOS_ENDPOINT')}.documents.azure.com:443/"
     DATABASE_ID = os.getenv("COSMOS_DATABASE_ID")
     CONTAINER_ID = os.getenv("COSMOS_CONTAINER_ID")
     NUMBER_OF_DOCUMENTS = 1000

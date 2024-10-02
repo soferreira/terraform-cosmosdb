@@ -1,7 +1,9 @@
-# Cosmos DB SQL API 
-This template deploys a cosmos db account with 1 sql databases  and 2 containers.
+# Cosmos DB SQL API
 
-## Variables 
+This template deploys a cosmos db account with 1 sql databases and 2 containers.
+
+## Variables
+
 | Name | Description |
 |-|-|
 | resource_group_name | Name of existing resource group |
@@ -14,7 +16,13 @@ This template deploys a cosmos db account with 1 sql databases  and 2 containers
 Please see terraform.tfvars.sample for example inputs. Above is the minimal input requirements for the cosmos db module. 
 
 ## Usage
+
 ```bash
-terraform plan -out example.tfplan
-terraform apply example.tfplan
+terraform init
+terraform plan 
+terraform apply
 ```
+
+## RBAC permissions
+
+[Use data plane role-based access control with Azure Cosmos DB for NoSQL](https://learn.microsoft.com/en-gb/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access?tabs=custom-definition%2Ccsharp&pivots=azure-interface-cli#permission-model)

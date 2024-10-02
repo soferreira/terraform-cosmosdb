@@ -15,7 +15,7 @@ provider "azurerm" {
 }
 
 # Resource group 
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "cosmosdb_account" {
   name     = var.resource_group_name
   location = var.resource_group_location
 }
@@ -33,10 +33,10 @@ locals {
   cosmosdb_account_name = try(random_string.db_account_name[0].result, var.cosmosdb_account_name)
 }
 
-resource "azurerm_cosmosdb_account" "example" {
+resource "azurerm_cosmosdb_account" "cosmosdb_account" {
   name                      = local.cosmosdb_account_name
   location                  = var.cosmosdb_account_location
-  resource_group_name       = azurerm_resource_group.example.name
+  resource_group_name       = azurerm_resource_group.cosmosdb_account.name
   offer_type                = "Standard"
   kind                      = "GlobalDocumentDB"
   geo_location {
@@ -49,24 +49,24 @@ resource "azurerm_cosmosdb_account" "example" {
     max_staleness_prefix    = 100000
   }
   depends_on = [
-    azurerm_resource_group.example
+    azurerm_resource_group.cosmosdb_account
   ]
 }
 
-resource "azurerm_cosmosdb_sql_database" "main" {
+resource "azurerm_cosmosdb_sql_database" "cosmosdb_database" {
   name                = var.cosmosdb_sqldb_name
-  resource_group_name = azurerm_resource_group.example.name
-  account_name        = azurerm_cosmosdb_account.example.name
+  resource_group_name = azurerm_resource_group.cosmosdb_account.name
+  account_name        = azurerm_cosmosdb_account.cosmosdb_account.name
   autoscale_settings {
     max_throughput = var.max_throughput
   }
 }
 
-resource "azurerm_cosmosdb_sql_container" "container1" {
+resource "azurerm_cosmosdb_sql_container" "cosmosdb_container_1" {
   name                  = "container1"
-  resource_group_name   = azurerm_resource_group.example.name
-  account_name          = azurerm_cosmosdb_account.example.name
-  database_name         = azurerm_cosmosdb_sql_database.main.name
+  resource_group_name   = azurerm_resource_group.cosmosdb_account.name
+  account_name          = azurerm_cosmosdb_account.cosmosdb_account.name
+  database_name         = azurerm_cosmosdb_sql_database.cosmosdb_database.name
   partition_key_paths    = ["/id"]
   partition_key_version = 1
 
@@ -75,11 +75,11 @@ resource "azurerm_cosmosdb_sql_container" "container1" {
   }
 }
 
-resource "azurerm_cosmosdb_sql_container" "container2" {
+resource "azurerm_cosmosdb_sql_container" "cosmosdb_container_2" {
   name                  = "container2"
-  resource_group_name   = azurerm_resource_group.example.name
-  account_name          = azurerm_cosmosdb_account.example.name
-  database_name         = azurerm_cosmosdb_sql_database.main.name
+  resource_group_name   = azurerm_resource_group.cosmosdb_account.name
+  account_name          = azurerm_cosmosdb_account.cosmosdb_account.name
+  database_name         = azurerm_cosmosdb_sql_database.cosmosdb_database.name
   partition_key_paths    = ["/id"]
   partition_key_version = 1
 
