@@ -1,21 +1,14 @@
-# Cosmos DB SQL API
+# Cosmos DB NoSQL API E2E sample
 
-This template deploys a cosmos db account with 1 sql databases and 2 containers.
+This repository provides an end-to-end sample for working with the Cosmos DB NoSQL API, including infrastructure deployment using Terraform and data interaction using a Python client.
 
-## Variables
+## Terraform
 
-| Name | Description |
-|-|-|
-| resource_group_name | Name of existing resource group |
-| location | Location where cosmos db will be deployed to | 
-| cosmos_account_name | Name of cosmos db account | 
-| cosmos_api | API for Cosmos db, should be "sql" in this example | 
-| sql_dbs | Cosmos SQL DBs to create | 
-| sql_db_containers | Cosmos SQL DB containers to create per each db | 
+In the terraform folder, you will find a template that deploys a Cosmos DB account with one SQL database and two containers.
 
-Please see terraform.tfvars.sample for example inputs. Above is the minimal input requirements for the cosmos db module. 
+### Usage
 
-## Usage
+To deploy the infrastructure, follow these steps:
 
 ```bash
 terraform init
@@ -25,4 +18,16 @@ terraform apply
 
 ## RBAC permissions
 
-[Use data plane role-based access control with Azure Cosmos DB for NoSQL](https://learn.microsoft.com/en-gb/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access?tabs=custom-definition%2Ccsharp&pivots=azure-interface-cli#permission-model)
+To manage data in your Azure Cosmos DB for NoSQL account, you need to grant the appropriate role-based access control (RBAC) permissions. This [article](https://learn.microsoft.com/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access?tabs=custom-definition%2Ccsharp&pivots=azure-interface-cli#permission-model) walks through the steps to grant an identity access to manage data, ensuring secure and controlled access to your Cosmos DB resources.
+
+## Python client
+
+In the python-client folder, you will find a Python client that interacts with Cosmos DB. This client provides a simple interface for performing CRUD operations on your Cosmos DB containers.
+
+### Usage
+
+To run the Python client, follow these steps:
+
+```bash
+python document_management.py
+```
