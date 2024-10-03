@@ -20,6 +20,12 @@ terraform apply
 
 To manage data in your Azure Cosmos DB for NoSQL account, you need to grant the appropriate role-based access control (RBAC) permissions. This [article](https://learn.microsoft.com/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access?tabs=custom-definition%2Ccsharp&pivots=azure-interface-cli#permission-model) walks through the steps to grant an identity access to manage data, ensuring secure and controlled access to your Cosmos DB resources.
 
+### Usage
+
+```bash
+./role_definition.sh
+```
+
 ## Python client
 
 In the python-client folder, you will find a Python client that interacts with Cosmos DB. This client provides a simple interface for performing CRUD operations on your Cosmos DB containers.

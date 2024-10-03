@@ -1,7 +1,5 @@
 .terraform
-terraform.tfstate
 .terraform.lock.hcl
-python-client/.env
-python-client/role-definition.json
-python-client/role-definition.md
+terraform.tfstate
 terraform.tfstate.backup
+python-client/.env
